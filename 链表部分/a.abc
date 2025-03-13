@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct point {
+    int x;
+    int y;
+};
+void print_by_point(struct point *t) {
+    printf("%d %d",t->x,t->y);
+    //->用来访问别调用函数的内部成员
+}
+struct point add_inside(struct point a) {
+    (a.x)++;
+    a.y=a.y+5;
+    return a;
+}
+struct point* input_value(int a,int b) {
+    struct point *xyz=(struct point*)malloc(sizeof(struct  point));
+    xyz->x=a;
+    xyz->y=b;
+    return xyz;
+}
+void print_normal(struct point a) {
+printf("%d %d",a.x,a.y);
+}
+int main() {
+    struct point a={0,0};
+    struct point b={0,0};
+    a=add_inside(a);
+    //进行的是值调用
+   print_normal(a);
+    print_normal(b);
+    print_by_point(&a);
+     print_by_point(&b);
+    struct point *ab;
+    ab=input_value(3,4);
+     print_by_point(ab);
+}
